@@ -1,0 +1,173 @@
+% ============================
+%|                            |
+%|         导入各种包			  |
+%|                            |
+% ============================
+\documentclass[hyperref,UTF8,a4paper]{ctexart}
+\usepackage{pdfpages} 
+\usepackage{amsmath,amssymb} 
+\usepackage{graphicx}
+\usepackage{xeCJK}
+\usepackage{xeCJKfntef}
+\usepackage{setspace}
+\usepackage{bm}
+\usepackage{booktabs}                 % 做三线表的包
+\usepackage{multirow} 
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx, makecell}
+% 设置页边距
+\usepackage{geometry} 
+\geometry{left=2.5cm,right=2.5cm,top=3.5cm,bottom=2.5cm}
+
+% 设置页眉的包
+\usepackage{fancyhdr} 
+\pagestyle{fancy}	
+\fancyhf{}
+% 设置页码
+\cfoot{\thepage}	
+
+% 取消图片注释中的冒号
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{twospace}{\ ~} 
+\captionsetup{labelsep=twospace}
+
+% 将章节序号改为中文
+\usepackage{zhnumber} 
+\renewcommand \thesection {第\zhnum{section}章}
+\renewcommand \thesubsection {\arabic{section}.\arabic{subsection}}
+
+%%%============================字体设置========================%%%
+\setmainfont{Times New Roman}        %缺省英文字体 Times New Roman
+\setCJKmainfont[Path=Configuration/]{simsun.ttf}          %宋体
+\setCJKsansfont[Path=Configuration/]{simhei.ttf}          %黑体
+\setCJKmonofont[Path=Configuration/]{simsun.ttf}          %宋体
+%------------------------------------------------------------------------
+\setCJKfamilyfont{song}[Path=Configuration/]{simsun.ttf}  %导入宋体字体
+\newcommand{\song}{\CJKfamily{song}} %设置宋体快捷命令
+%------------------------------------------------------------------------
+\setCJKfamilyfont{kai}[Path=Configuration/]{simkai.ttf}   %导入楷书字体
+\newcommand{\kai}{\CJKfamily{kai}}   %设置楷书快捷命令
+%------------------------------------------------------------------------
+\setCJKfamilyfont{hei}[Path=Configuration/]{simhei.ttf}   %导入黑体字体
+\newcommand{\hei}{\CJKfamily{hei}}   %设置黑体快捷命令
+
+%%%============================摘要及关键词========================%%%
+\newcommand{\cnabstractname}{\hei \zihao{-3} \textbf{摘要}}
+\newcommand{\enabstractname}{\zihao{-3} \textbf{Abstract}}
+\newcommand\cnkeywordsname{关键词}
+\newcommand\cnkeywords[1]{ {\noindent\hei\zihao{-4}\cnkeywordsname: }#1}
+\newcommand\enkeywordsname{Key Words}
+\newcommand\enkeywords[1]{ {\noindent\bfseries\zihao{-4}\enkeywordsname: }#1}
+
+\newenvironment{cnabstract}{%
+ \newpage
+ \mbox{}
+ \par 
+ \noindent\mbox{}\hfill{\bfseries \ziju{2}{\cnabstractname}}\hfill\mbox{}\par 
+ \vspace{0.64cm}
+ }
+    
+\newenvironment{enabstract}{%
+ \newpage
+ \mbox{}
+ \par 
+\noindent\mbox{}\hfill{\bfseries \ziju{2}{\enabstractname}}\hfill\mbox{}\par
+  \vspace{0.64cm}
+ }
+
+%%%============================设置目录内容格式============================%%%
+\usepackage{titletoc}
+\renewcommand{\contentsname}{\hei \zihao{3} \textbf{目\quad 录} \vspace{2ex}}
+\titlecontents{section}[4em]
+    {
+        \bfseries %字体加粗
+        \hei
+        \zihao{-4} %小四号字体
+        \vspace{6pt} %调整上下距离
+    } 
+    {\contentslabel{3em}} %调整
+    {\hspace*{-3em}} %调整左右距离
+    {~\titlerule*[0.3pc]{$.$}~\contentspage} %调整连接点粗细
+\titlecontents{subsection}[5em]
+    {	
+    	\bfseries %字体加粗
+    	\hei
+        \zihao{-4} 
+        \vspace{6pt}
+    } 
+    {\contentslabel{2em}} 
+    {\hspace*{-2em}}
+    {~\titlerule*[0.3pc]{$.$}~\contentspage}
+\titlecontents{subsubsection}[7.5em]
+    {
+        \zihao{-4} 
+        \vspace{6pt}
+    } 
+    {\contentslabel{2.5em}} 
+    {\hspace*{-2em}}
+    {~\titlerule*[0.3pc]{$.$}~\contentspage}
+%%%============================设置正文各级标题格式============================%%%
+\CTEXsetup[format={\centering \heiti \zihao{3} \bfseries},beforeskip={24bp},afterskip={18bp},aftername={\enspace}]{section} % 一级标题三号黑体加粗
+\CTEXsetup[format={\raggedright \heiti  \zihao{4} \bfseries},beforeskip={24bp},afterskip={6bp},aftername={\enspace}]{subsection} % 二级标题四号黑体加粗
+\CTEXsetup[format={\raggedright \heiti  \zihao{4}},beforeskip={12bp},afterskip={6bp},aftername={\enspace}]{subsubsection} % 三级标题四号黑体
+%%%============================设置参考文献===================================%%% 
+% 设置参考文献的包
+\usepackage{gbt7714} % 使用GB/T-7714-2015格式 
+% 设置参考文献行间距
+\usepackage{natbib}
+\setlength{\bibsep}{0.5ex}
+
+% ========================
+%|                        |
+%|         正文			  |
+%|                        |
+% ========================
+
+\begin{document}
+%%%=============================加入封面和诚信承诺书=============================%%%
+% 导入封面
+%pdf修改为论文封面的PDF文件绝对路径名
+\includepdf[pages=-]{江西理工大学硕士论文封面.pdf}
+%%%===============================加入中英文摘要.===============================%%%
+\include{Chapters/abstract}
+%%%===============================加入目录=====================================%%%
+\clearpage
+\fancyhead[C]{江西理工大学硕士学位论文\quad 目录} % 设置学院
+\renewcommand{\headrulewidth}{0.5pt} %设置页眉横线粗细
+\setcounter{page}{1}						% 设置当前页页码编号从1开始计数
+\pagenumbering{Roman}						% 设置页码字体为大写罗马字体
+\tableofcontents
+%%%===============================加入正文=====================================%%%
+% 设置正文页眉&页码
+\newpage
+\fancyhead[C]{\song \zihao{5} \leftmark} 					% 设置章节标题
+\renewcommand{\headrulewidth}{0.5pt} 		% 设置页眉横线粗细、
+\setcounter{page}{0}						% 设置当前页页码编号从1开始计数
+\pagenumbering{arabic}						% 设置页码字体为小写阿拉伯字体
+\song \zihao{-4}
+
+\include{Chapters/chapter1} % 导入第一章内容
+
+\include{Chapters/chapter2} % 导入第二章内容
+
+\include{Chapters/chapter3} % 导入第三章内容
+
+\include{Chapters/chapter4} % 导入第四章内容
+
+%%%===============================加入结论=====================================%%%
+\include{Chapters/conclusion}
+%%%=============================加入参考文献====================================%%%
+\clearpage
+\fancyhead[C]{\song \zihao{5} 参考文献} % 设置页眉
+\renewcommand{\headrulewidth}{0.5pt} %设置页眉横线粗细
+\phantomsection\addcontentsline{toc}{section}{\heiti \zihao{-4} \textbf{参考文献}} % 将参考文献添加到目录
+\bibliographystyle{gbt7714-numerical}
+\bibliography{references}
+%%%%===============================加入致谢=====================================%%%
+\include{Chapters/thanks}       
+%%%%=============================加入研究成果====================================%%%
+\include{Chapters/achievements}       
+
+\end{document}

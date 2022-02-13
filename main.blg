@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: /Users/wanghuai/Documents/硕士研究生材料/江西理工大学硕士论文LaTex模版/main.aux
+A level-1 auxiliary file: Chapters/abstract.aux
+A level-1 auxiliary file: Chapters/chapter1.aux
+A level-1 auxiliary file: Chapters/chapter2.aux
+A level-1 auxiliary file: Chapters/chapter3.aux
+A level-1 auxiliary file: Chapters/chapter4.aux
+A level-1 auxiliary file: Chapters/conclusion.aux
+The style file: gbt7714-numerical.bst
+A level-1 auxiliary file: Chapters/thanks.aux
+A level-1 auxiliary file: Chapters/achievements.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 150 items from 100.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+Warning--I didn't find a database entry for "r1"
+Warning--I didn't find a database entry for "r2"
+Warning--I didn't find a database entry for "r3"
+Warning--I didn't find a database entry for "r4"
+Warning--I didn't find a database entry for "r5"
+You've used 3 entries,
+            5261 wiz_defined-function locations,
+            1043 strings with 8480 characters,
+and the built_in function-call counts, 28636 in all, are:
+= -- 473
+> -- 3412
+< -- 4319
++ -- 1170
+- -- 169
+* -- 155
+:= -- 3968
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 6
+chr.to.int$ -- 1064
+cite$ -- 3
+duplicate$ -- 69
+empty$ -- 177
+format.name$ -- 102
+if$ -- 7416
+int.to.chr$ -- 1
+int.to.str$ -- 4
+missing$ -- 0
+newline$ -- 29
+num.names$ -- 9
+pop$ -- 1518
+preamble$ -- 1
+purify$ -- 3
+quote$ -- 0
+skip$ -- 3059
+stack$ -- 0
+substring$ -- 1279
+swap$ -- 3
+text.length$ -- 54
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 39
+warning$ -- 0
+while$ -- 67
+width$ -- 0
+write$ -- 55
+(There were 5 warnings)

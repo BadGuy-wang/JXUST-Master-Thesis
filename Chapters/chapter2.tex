@@ -1,0 +1,509 @@
+\section{\LaTeX 使用入门}
+
+~\LaTeX~的命令形式均为一个反斜杠后跟字母及括号，一般请在输入一个命令之后敲一个空格，以免产生未知错误。
+
+\subsection{换段、换行与空格}
+
+在~\LaTeX~中，单个的回车与空格会被忽略。
+
+\begin{description}
+ \item[换段]此处的换段指的是开启一个新段落，通过空一行（两次回车）实现段落换行，也可以通过 \verb|\par| 命令来新起一段。
+ \item[换行]此处的换行指的是换行不换段，通过输入两个反斜杠也即是\verb|\\|可以实现换行，换行之后不会缩进，与上一行仍属于一个段落的内容。
+ \item[空格]此处的空格指的不是键盘上敲一下空格键生成的空格，而是出现在文中的空格，例如\quad 这\quad 样，通过命令\verb|\quad|即可实现。
+\end{description}
+
+\subsection{标题}
+
+\begin{tabular}{l l}
+\verb|\chapter{}| & 一级标题命令\quad 形如第一章 \\
+\verb|\section{}| & 二级标题命令\quad 形如1.1 \\
+\verb|\subsection{}| & 三级标题命令\quad 形如1.1.1 \\
+\verb|\subsubsection{}| & 四级标题命令\quad 形如1.1.1.1 \\
+\end{tabular}
+
+\subsection{字体调节}
+
+\begin{tabular}{l l l}
+ \verb|\textbf{}| & \textbf{成都理工大学} & 文本加粗\\
+ \verb|\textit{}| & \textit{成都理工CDUT} & 文本斜体\\
+ \verb|\mathbf{}| & $\mathbf{CDUT}$ & 数学环境下加粗\\
+ \verb|\bm{}| & $\bm{CDUT}$ & 数学环境下加粗斜体\\
+\end{tabular}
+
+\subsection{公式}
+
+\subsubsection{常用数学环境}
+
+在~\LaTeX~中撰写公式，需要给公式加上一个数学环境，下列为常用的数学环境。
+
+\begin{tabular}{ll}
+\toprule
+环境命令 & 命令含义\quad 是否编号\\
+\midrule
+ \verb|\(...\)| & 行内公式\quad 不编号 \\
+ \verb|$...$| & 行内公式\quad 不编号 \\
+ \verb|\begin{math}...\end{math}| & 行内公式\quad 不编号 \\
+ \verb|\[...\]| & 行间公式\quad 不编号 \\
+ \verb|\begin{equation}...\end{equation}| & 行间公式\quad 编号 \\
+ \verb|\begin{displaymath}...\end{displaymath}| & 行间公式\quad 不编号 \\
+ \verb|\begin{equation*}...\end{equation*}| & 行间公式\quad 不编号 \\
+\bottomrule
+\end{tabular}
+
+\subsubsection{公式范例}
+
+\subsubsection{行内及行间公式}
+
+在文中引用公式可以这么写：$a^2+b^2=c^2$这是勾股定理，它还可以表示为$c=\sqrt{a^2+b^2}$，还可以让公式单独一段并且加上编号。注意，公式前请不要空行。
+\begin{equation}
+\sin^2{\theta}+\cos^2{\theta}=1 \label{eq:pingfanghe}
+\end{equation}
+
+这样就可以通过添加标签在正文中引用公式，如式\eqref{eq:pingfanghe}。
+
+\subsubsection{矩阵及多行对齐公式}
+
+在大的数学环境内嵌套一些特定环境可以实现更加丰富的效果，下面的示例都是在\verb|\begin{equation}...\end{equation}|中嵌套。
+
+嵌套\verb|\begin{matrix}...\end{matrix}|可实现矩阵的显示：
+\begin{equation}
+  \mathbf{A}=
+  \left[\begin{matrix}
+    1&2&3&4\\
+    11&22&33&44\\
+  \end{matrix}\right] \times
+  \left[\begin{matrix}
+    22&24\\
+    32&34\\
+    42&44\\
+    52&54\\
+  \end{matrix}\right]
+\end{equation}
+
+嵌套\verb|\begin{aligned}...\end{aligned}|可实现多行对齐的公式：
+\begin{equation}
+  \begin{aligned}
+    f_1(x)&=(x+y)^2\\
+          &=x^2+2xy+y^2
+  \end{aligned}
+\end{equation}
+
+上面的形式同样也能通过嵌套\verb|\begin{split}...\end{split}|实现：
+\begin{equation}
+\begin{split}
+A & = \frac{\pi r^2}{2} \\
+ & = \frac{1}{2} \pi r^2
+\end{split}
+\end{equation}
+
+在公式的对齐中，使用的都是\verb|&|字符来标定对齐位置，~\LaTeX~会将\verb|&|后的第一个字符内容对齐，在两行之间使用\verb|//|来分割。
+
+\subsubsection{对齐方程组}
+
+方程的对齐可以用\verb|\begin{align*}...\end{align*}|实现，这一环境作用为生成一不带编号（带*号表示不编号，去掉*号则对每行公式都编号，此规则适用大多数的数学环境）的多行对齐的方程。
+\begin{align*} 
+2x - 5y &=  8 \\ 
+3x + 9y &=  -12
+\end{align*}
+
+下面是一个灵活插入\verb|&|以实现更复杂的方程组排列对齐的例子：
+\begin{align*}
+x&=y           &  w &=z              &  a&=b+c\\
+2x&=-y         &  3w&=\frac{1}{2}z   &  a&=b\\
+-4 + 5x&=2+y   &  w+2&=-1+w          &  ab&=cb
+\end{align*}
+
+\subsubsection{长公式}
+
+当一个公式过长时可以通过\verb|\begin{multline*}...\end{multline*}|将其分割为两行显示，带*号表示此环境不对公式进行编号。
+
+\begin{multline*}
+p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3- 12x^5y^7 - 12y^3 + 2y^4 - a^2b^5\\ 
+- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline*}
+
+\subsection{图片}
+
+\subsubsection{\LaTeX 中的图}
+
+\LaTeX 环境下可以使用常见的图片格式：JPEG、PNG、PDF、EPS等。当然也可以使用\LaTeX 直接绘制矢量图形，可以参考pgf/tikz等包中的相关内容。需要注意的是，无论采用什么方式绘制图形，首先考虑的是图片的清晰程度以及图片的可理解性，过于不清晰的图片将可能会浪费很多时间。
+
+\subsubsection{插入图片}
+
+插入图片的命令为\verb|\includegraphics[]{}|，方括号[]里是控制图片大小以及角度的控制命令，大括号{}里是所插入图片的文件名（注意，一定要把图片放到figures文件夹里去）。
+\subsubsection{插图控制}
+
+这里罗列一些控制图片的常见命令：
+
+\begin{tabular}{ll}
+\verb|scale=...| & 等比例缩放 \\
+\verb|width=..., height=...| & 宽和高 \\
+\verb|width=...\textwidth| & 与文本宽度成比例\\
+\verb|angle=...| & 旋转(顺时针为负数，逆时针为正数，单位度)\\
+\end{tabular}
+
+\subsubsection{图片环境}
+
+在\LaTeX 中插入的图片需要放入一个名为浮动体的环境中以便于\LaTeX 进行排版，其一般形式如下：
+
+\verb|\begin{figure}[!htbp]|\par
+\verb|\centering|\par
+\verb|\includegraphics[]{}|\par
+\verb|\chartname{图名}|\par
+\verb|\label{图片标签}|\par
+\verb|\end{figure}|
+
+简单来说，\verb|\begin{figure}...\end{figure}|是一对，就像C语言里if和end一样，在if和end之间称循环体，在\verb|\begin{figure}...\end{figure}|之间为图片浮动体。
+
+\verb|\chartname{图名}|这一命令即是对插入的图片取一个图名。
+
+\verb|\label{图片标签}|这个命令紧跟在图名命令后，作用是给图片加一个标签，所谓标签也即是引用的时候你输入这个标签就能够引用图名了。
+
+\verb|[htbp]|选项意即是浮动体位于此处、页顶、页底、独立一页。
+
+\subsubsection{插图范例}
+
+下面做一些简单的示例：
+
+\begin{figure}[!htb]
+  \begin{minipage}[t]{0.5\linewidth}
+    \centering
+     \includegraphics[width=0.4\textwidth]{figures/images1.jpg}
+     \caption{我书读得多，不会骗你}\label{fig:1}
+  \end{minipage}%
+  \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[scale=0.5,angle=-45]{figures/images2.jpg}
+    \caption{哈哈哈}\label{fig:2}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{\LaTeX 常用的长度单位及度量}
+
+考虑到插入图片需求的多样性，下面罗列了一些可以用于前面图片控制命令的\LaTeX 长度单位及命令，在具体使用的时候可以多尝试一下，以达到最佳效果。
+
+\begin{tabular}{ll}
+pt & 单位长度，大约为0.3515mm \\
+mm & 一毫米 \\
+cm & 一厘米 \\
+in & 一英寸 \\
+ex & 当前字体尺寸中x的高度 \\
+em & 当前字体尺寸中M的宽度 \\
+\verb|\columnsep| & 两列之间的距离 \\
+\verb|\columnwidth| & 列宽 \\
+\verb|\linewidth| & 当前环境中线的宽度 \\
+\verb|\paperwidth| & 页面宽度 \\
+\verb|\paperheight| & 夜面高度 \\
+\verb|\textwidth| & 文本宽度 \\
+\verb|\textheight| & 文本高度 \\
+\end{tabular}
+
+\subsection{表格}
+
+\subsubsection{通过在线工具生成表格}
+
+表格的输入可能会比较麻烦，可以使用在线的工具，如~\href{https://www.tablesgenerator.com/}{https://www.tablesgenerator.com/}{Tables Generator}~能便捷的创建表格，也可以使用离线的工具，如~\href{https://ctan.org/pkg/excel2latex}{https://ctan.org/pkg/excel2latex}{Excel2LaTeX}~支持从Excel表格转换成\LaTeX{}表格。\href{https://en.wikibooks.org/wiki/LaTeX/Tables}{https://en.wikibooks.org/wiki/LaTeX/Tables}{LaTeX/Tables}~上及~\href{https://www.tug.org/pracjourn/2007-1/mori/mori.pdf}{https://www.tug.org/pracjourn/2007-1/mori/mori.pdf}{Tables in LaTeX}~也有更多的示例能够参考。
+
+\subsubsection{表格的一般形式}
+
+表格环境一般格式如下：
+
+\verb|\begin{table}[htbp]|\par 
+\verb|\centering|\par 
+\verb|\chartname{表名}|\par 
+\verb|\label{表格标签}|\par 
+\verb|\begin{tabular}{c c}|\par 
+\verb|...&...\\|\par 
+\verb|...&...|\par 
+\verb|\end{tabular}|\par 
+\verb|\end{table}|\par 
+
+首先是关于插入表格的位置控制问题。
+
+同前面的图片的插入一样，主要就是用$h,t,b,p$这四个选项来控制表格位于此处、页顶、页底及单独一页，笔者注意到从Tables Generator粘贴来的代码是没有给这一浮动体位置控制命令的，因此需要读者自己添加。
+
+因为地物院的论文写作要求中图名位于下方，表名位于上方，所以在写表格的时候应当将生成表格标题以及表格标签的命令放在表格内容开始之前，也即是上面一般形式中的位置。
+
+\subsubsection{分割单元格及单元格内容对齐}
+
+表格的主体内容在\verb|\begin{tabular}{c l r}...\end{tabular}|之间，在两列之间插入\verb|&|字符作为分割，在两行之间插入\verb|\\|作为分割。
+\par
+在上面一般形式的\verb|\begin{tabular}{c c}|里第二个大括号中的$c$是控制表中两列单元格里的内容居中显示的意思，另外还有$l$和$r$，前者控制单元格内容左对齐，后者控制内容右对齐。
+
+\subsubsection{使用在线工具的注意事项}
+
+提醒一下使用在线工具的读者，就是表格标题的问题，Tables Generator这一工具，它不仅不给浮动体控制，也并不曾添加表名及表名标签命令。\par 因此请一定注意给自己复制过来的代码里加上生成表名及表名标签的命令，也就是\verb|\chartname{表名}\label{表格标签}|，这样在后续论文的写作中才能引用它。
+
+\subsubsection{表格范例}
+
+下面做一些表格的示例，读者可参照本模板源码以及所编译生成的表格来进行简单的表格编写。
+
+\subsubsection{普通表格}
+
+下面是一些普通表格的示例：
+
+\begin{table}[ht]
+\begin{minipage}[t]{0.45\textwidth}
+  \centering
+  \caption{简单表格}
+  \label{tab:1}
+  \begin{tabular}{|l|c|r|}
+    \hline
+    姓甚名谁 & 何处高就 & 月入几何 \\
+    \hline
+    张三& 某腾 & 2W \\
+    \hline
+    李四& 某阿 & 1W \\
+    \hline
+    王五& 某团 & 3W \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+  \centering
+  \caption{一般三线表}
+  \label{tab:2}
+  \begin{tabular}{ccc}
+    \hline
+    姓名& 学号& 性别\\
+    \hline
+    张三& 001& 男\\
+    李四& 002& 女\\
+    \hline
+  \end{tabular}
+\end{minipage}  
+\end{table}
+
+\begin{table}[ht]
+\begin{minipage}[t]{0.45\textwidth}
+  \centering
+  \caption{无框线表格}
+  \label{tab:3}
+  \begin{tabular}{ c c c }
+ cell1 & cell2 & cell3 \\ 
+ cell4 & cell5 & cell6 \\  
+ cell7 & cell8 & cell9    
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\caption{组合行列表格}
+\label{tab:4}
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+col1 & col2 & col3 \\
+\hline
+\multirow{3}{4em}{Multiple row} & cell2 & cell3 \\ 
+& cell5 & cell6 \\ 
+& cell8 & cell9 \\ 
+\hline
+\end{tabular}
+\end{minipage}  
+\end{table}
+
+\begin{table}[!htb]
+\centering
+\caption{定长表}
+\label{tab:5}
+\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}| }
+ \hline
+ \multicolumn{4}{|c|}{Country List} \\
+ \hline
+Country Name or Area Name& ISO ALPHA 2 Code & ISO ALPHA 3 Code & ISO numeric Code \\
+ \hline
+ Afghanistan   & AF    &AFG&   004\\
+ Aland Islands&   AX  & ALA   &248\\
+ Albania &AL & ALB&  008\\
+ Algeria    &DZ & DZA&  012\\
+ American Samoa&   AS  & ASM&016\\
+ Andorra& AD  & AND   &020\\
+ Angola& AO  & AGO&024\\
+ \hline
+\end{tabular}
+\end{table}
+
+更多的表格样式可以看看Overleaf的帮助文档（点击菜单拉到底），Overleaf的帮助文档是比较全面的，基本上数学公式的排版、图片插入、图像绘制、表格创建等论文写作可能会用到的内容它都有讲解，读者可以多在这一文档里看看。
+
+\subsubsection{跨页表格}
+
+跨页表格常用于附录（把正文放不下的实验数据统统放在附录的表中），以下是一个跨页表格的示例：
+
+{\centering
+  \begin{longtable}{ccccccccc}
+  \caption{跨页表格示例} \\
+  \toprule
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  \midrule
+  \endfirsthead
+
+  \multicolumn{1}{l}{接上一页} \\
+  \toprule
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  \midrule
+  \endhead
+
+  \bottomrule
+  \hline \\
+  \multicolumn{9}{r}{{转下一页}} \\
+  \endfoot
+
+  \bottomrule
+  \endlastfoot    
+
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+  1     & 0 & 5  & 1  & 2  & 3  & 4  &  5 & 6 \\
+
+  \end{longtable}
+}
+
+\subsection{列表}
+
+\subsubsection{列表环境}
+
+\begin{tabular}{l l}
+\toprule
+环境命令 & 命令含义\\
+\midrule
+\verb|\begin{enumerate}...\end{enumerate}| & 有序列表 \\
+\verb|\begin{itemize}...\end{itemize}| & 无序列表 \\
+\verb|\begin{description}...\end{description}| & 描述性列表 \\
+\bottomrule
+\end{tabular}
+
+在一个列表环境中可以继续嵌套列表环境以实现更丰富的表现形式。
+
+在列表环境中每个条目均以\verb|\item|命令开头，一个\verb|\item|即为一个条目。
+
+当需要更改条目前的序号或符号时可以使用\verb|\item[...]|命令，在中括号中输入想要的序号或者符号即可。这一命令在描述性列表环境中，输入的应为描述性的文本内容。
+
+\subsubsection{列表范例}
+
+下面演示了创建有序列表、无序列表以及描述性列表，读者可参见本模板源码进行简单的列表编写。更多示例参见\href{https://www.latex-tutorial.com/tutorials/lists/}{https://www.latex-tutorial.com/tutorials/lists/}{LaTeX Lists}。
+
+\subsubsection{有序列表}
+
+有序列表即一个计数的使用序号来标识各条目的列表。
+  \begin{enumerate}
+      \item 第一条目
+          \begin{enumerate}
+              \item 第一条目中的第一项
+              \item 第一条目中的第二项
+          \end{enumerate}
+      \item 第二条目
+    \begin{enumerate}
+      \item 第二条目中的第一项
+      \item 第二条目中的第二项
+    \end{enumerate}
+      \item 第三条目
+  \end{enumerate}
+
+\subsubsection{无序列表}
+  无序列表即一个不计数而使用符号来标识各条目的列表。
+  \begin{itemize}
+      \item 第一条目
+      \begin{itemize}
+          \item 第一条目中的第一项
+          \item 第一条目中的第二项
+      \end{itemize}
+      \item 第二条目
+      \item 第三条目
+  \end{itemize}
+
+\subsubsection{描述性列表}
+
+描述性列表即一个用描述性文本来标识各条目的列表。
+
+\begin{description}
+  \item[Step 1]  条目一.
+  \item[第二条]  条目二.
+  \item[第三点]  条目三.
+  \item[fourth]  条目四.
+  \item[条目五]  条目五.
+\end{description}
+
+\subsection{参考文献}
+
+\subsubsection{将文献添加到模板}
+
+文献引用需要配合BibTeX使用，很多工具可以直接生成BibTeX文件（EndNote, NoteExpress, \href{https://xueshu.baidu.com/}{https://xueshu.baidu.com/}{百度学术}，\href{https://ac.scmor.com/}{https://ac.scmor.com/}{谷歌学术}）。\par 以百度学术为例，在其中找到一篇论文，点击\textbf{<引用>}按钮。在弹出来的窗口中点击导出至\textbf{<BibTeX>}按钮，将跳转页面的全部内容复制。 打开本模板ref.bib文件，将复制的内容空一行粘贴进去即可。
+
+读者可以在每一篇文献的BibTeX内容代码的第一行大括号后进行命名，作用等同于引用其他内容所使用的标签。
+
+\subsubsection{参考文献的罗列顺序}
+
+本模板对参考文献的排序采用顺序编码制，也即文末参考文献的罗列顺序是与论文中的引用次序有关的，读者在论文中引用的第一篇文献会在参考文献页排在第一条，引用的第二篇文献则居于第二条，以此类推。
+
+\subsection{论文中的引用}
+
+\subsubsection{添加标签}
+
+所谓标签也即是一种标识，为~\LaTeX~指明所需引用的对象。
+
+故若要引用某一内容，需在该内容后添加标签，添加标签的命令为\verb|\label{...}|，大括号内为自行设定的标签文本。
+
+添加标签时应注意标签的位置，例如一个编号的公式环境中只有一个公式时，标签命令置于公式内容之后或置于\verb|\begin{...}|之后，效用相同。但若是公式环境中有多个编号公式，则应将标签命令置于具体想要引用的那个公式之后。
+
+对于图表的标签，一般均置于图名及表名命令之后。
+
+\subsubsection{引用命令}
+
+\begin{tabular}{l l}
+  \verb|\ref{...}|   & 不带括号的引用 \\
+  \verb|\eqref{...}|  & 引用公式所用的带括号引用 \\
+  \verb|\pageref{...}| & 引用对象所在页码 \\
+  \verb|\cite{...}| & 引用参考文献 
+\end{tabular}
+
+\subsubsection{插图的引用}
+
+引用命令为\verb|\ref{...}|。
+
+就像这样，如图\ref{fig:1}，其描绘的是一羽扇纶巾的人。\par 
+
+\subsubsection{表格的引用}
+
+引用命令为\verb|\ref{...}|。
+
+就像这样：如表~\ref{tab:6}所示，统计表格一般是三线表形式。
+
+\subsubsection{页码的引用}
+
+引用命令为\verb|\pageref{...}|。
+
+就像这样，就如上文第\pageref{fig:1}页的图\ref{fig:1}所示，羽扇是黑色的。
+
+\subsubsection{文献的引用}
+
+引用命令为\verb|\cite{...}|。
+
+本模版引用参考文献统一采用数字上标的形式\cite{r1}。
+
+引用多个文献时只需将各文献的标签以逗号分隔\cite{r1,r2,r3,r4,r5}。
+
+特别说明，这里的文献引用，是从本模板的文献数据库，也即是$ref.bib$中引用，而非从网站或学术网站引用，读者需要将自己撰写论文所需的参考文献的BibTeX信息导入$ref.bib$文件中方可实现在论文中引用。
