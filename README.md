@@ -35,3 +35,5 @@
 3、关于Visio如何保存图片为`.pdf`格式，[请参考此博客](https://blog.csdn.net/u014686356/article/details/87985796 "Visio转PDF")
 
 4、开题报告模版[点击此处](https://github.com/BadGuy-wang/JUST-master-student-thesis-template "开题报告模版")
+
+5、如有问题可以在issue中提交问题，或者邮箱handsomewhuai@gmail.com
